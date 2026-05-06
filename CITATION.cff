@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this toolkit in your work, please cite it as below."
+type: software
+title: "AXKI AI Governance Kit"
+version: 1.0.0
+date-released: "2026-05-06"
+abstract: "Six slash commands implementing adversarial AI governance for Claude Code and Codex CLI, based on the Boris Cherny framework. Enables executor/reviewer role separation between AI agents to prevent hallucination-based attacks and enforce structured coding discipline."
+authors:
+  - family-names: Dion
+    given-names: Max
+    alias: maxdion
+    affiliation: "AXKI Consulting"
+    email: max@axki.ca
+    website: https://axki.ca
+    orcid: ""
+license: MIT
+repository-code: "https://github.com/AXKI-Consulting/axki-governance-kit"
+url: "https://axki.ca"
+keywords:
+  - "AI governance"
+  - "Claude Code"
+  - "Codex CLI"
+  - "adversarial AI"
+  - "npm hallucination"
+  - "Boris Cherny framework"
+  - "slash commands"
+  - "AI automation"
