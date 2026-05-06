@@ -166,10 +166,10 @@ Montreal, Canada. Clients in Canada, USA, Europe, and Latin America.
 
 - Website: [axki.ca](https://axki.ca)
 - Email: [max@axki.ca](mailto:max@axki.ca)
-- LinkedIn: [Max Dion](https://linkedin.com/in/maxdion)
+- LinkedIn: [Max Dion](https://www.linkedin.com/in/maxxdion-no1/)
 
 **Need help implementing this in your stack?**
-Book a free 30-minute strategic discovery call at [axki.ca](https://axki.ca). We look at what you have, identify the gaps, and build a plan. No sales pitch.
+[Book a free 30-minute strategic discovery call](https://calendar.app.google/cuhqb3tSsnx6CYWZ8). We look at what you have, identify the gaps, and build a plan. No sales pitch.
 
 ---
 
