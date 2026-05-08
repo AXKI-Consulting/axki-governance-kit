@@ -1,6 +1,12 @@
-# /skill:axki-checklist — Boris Cherny Quick Checklist
+---
+name: axki-checklist
+description: Run a quick AXKI Boris Cherny governance checklist before a phase transition or commit.
+user-invocable: true
+---
 
-## AXKI Boris Cherny Governance — Quick Checklist
+# /skill:axki-checklist - Boris Cherny Quick Checklist
+
+## AXKI Boris Cherny Governance - Quick Checklist
 
 **Owner:** Max Dion | AXKI | max@axki.ca  
 **Version:** 1.0 | April 2026  
@@ -12,15 +18,17 @@
 
 A rapid governance audit to run before any commit or phase transition. The **reviewer** scores each item against the executor's work.
 
+Project-specific AGENTS.md / CLAUDE.md instructions override this generic framework.
+
 ## Usage
 
-```
+```text
 /skill:axki-checklist
 ```
 
 ## Instructions for the Reviewer
 
-Score each item below. Use: ✓ PASS | ✗ FAIL | △ PARTIAL  
+Score each item below. Use: PASS | FAIL | PARTIAL
 Flag every FAIL and PARTIAL with a one-line explanation.  
 Issue final verdict at the bottom.
 
@@ -35,23 +43,23 @@ Issue final verdict at the bottom.
 - [ ] Explicit GO received before this phase started?
 
 ### LANES & WORKTREES
-- [ ] Real Git worktrees — not folders?
-- [ ] Worktrees inside buildup/lanes/ — not siblings?
+- [ ] If the project uses lane worktrees, real Git worktrees were used - not folders?
+- [ ] If the project uses lane worktrees, they were created in the project-approved lanes directory?
 - [ ] Each lane has one concern only?
 - [ ] No cross-lane contamination?
 - [ ] Worktrees removed after each lane merges?
 
 ### GATES
-- [ ] GATE 1 cleared? (Explore → GO)
-- [ ] GATE 2 cleared? (Plan → GO)
-- [ ] GATE 3 pending? (Implement → GO before Commit)
+- [ ] GATE 1 cleared? (Explore -> GO)
+- [ ] GATE 2 cleared? (Plan -> GO)
+- [ ] GATE 3 pending? (Implement -> GO before Commit)
 - [ ] GATE 4 active? (No prod without GO Prod)
 
 ### DONE CRITERIA
 - [ ] test_cmd defined?
 - [ ] done_when defined per task?
 - [ ] Stop-hook loops until all green?
-- [ ] Failure protocol: fix → new commit → rerun?
+- [ ] Failure protocol: fix -> new commit -> rerun?
 
 ### COMMITS
 - [ ] Atomic? One concern per commit?
@@ -60,11 +68,11 @@ Issue final verdict at the bottom.
 
 ### MEMORY & GOVERNANCE
 - [ ] Memory file (CLAUDE.md / AGENTS.md) updated this session?
-- [ ] ÉTAT COURANT reflects actual state?
-- [ ] Mistakes logged in ERREURS CONNUES?
-- [ ] Session log written to /logs/?
-- [ ] Merged branches deleted?
-- [ ] git push origin master executed?
+- [ ] Current state reflects actual state?
+- [ ] Mistakes logged in known-errors memory if the project uses one?
+- [ ] Session log written if the project requires one?
+- [ ] Merged branches deleted when appropriate?
+- [ ] Approved target branch/current session branch pushed only when authorized?
 
 ### ANTI-PATTERNS
 - [ ] No monolithic scripts?
@@ -78,7 +86,7 @@ Issue final verdict at the bottom.
 
 ## VERDICT
 
-```
+```text
 Fails found: ___
 Partials found: ___
 
@@ -91,4 +99,4 @@ VERDICT: GO / NEEDS REVISION / BLOCK
 
 - This checklist is run by the **reviewer** agent (as declared in `/skill:axki-init`).
 - If roles have not been initialized, prompt the user to run `/skill:axki-init` first.
-- The executor should NOT self-score — that defeats the purpose of adversarial governance.
+- The executor should NOT self-score - that defeats the purpose of adversarial governance.

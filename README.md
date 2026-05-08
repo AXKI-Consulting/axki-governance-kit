@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>6 slash commands. Two AIs. Zero hallucinations shipping to prod.</strong>
+  <strong>4 governance skills for Claude Code. 4 governance commands for Codex CLI. Two AIs. Zero hallucinations shipping to prod.</strong>
 </p>
 
 <p align="center">
@@ -18,7 +18,7 @@
 
 ## What this is
 
-A set of slash commands that put one AI in charge of building, and another in charge of challenging it.
+A governance kit that puts one AI in charge of building, and another in charge of challenging it.
 
 The pattern: your executor AI writes code. Your reviewer AI audits every plan, package, and commit before it ships. Neither one trusts the other blindly. That's the point.
 
@@ -32,27 +32,31 @@ AI coding tools hallucinate package names. They do it confidently. Attackers scr
 
 The fix is not to stop using AI. The fix is to add a second AI that challenges the first one before anything gets installed or committed.
 
-This kit gives you the commands to do that in under 2 minutes.
+This kit gives you Claude Code skills and Codex CLI commands to do that in under 2 minutes.
 
 ---
 
-## Commands
+## Public invocation names
 
-### Governance (4 commands)
+Claude Code uses skills. Codex uses commands. The governance concepts are the same, but the invocation syntax is intentionally different to avoid copy-paste confusion.
+
+### Claude Code Skills
+
+| Skill | Role | What it does |
+|-------|------|--------------|
+| `/skill:axki-init` | Setup | Declares executor and reviewer roles for the session |
+| `/skill:axki-validate` | Reviewer | Scores every item in the plan: PASS / FAIL / PARTIAL. Blocks on anything under threshold |
+| `/skill:axki-checklist` | Reviewer | Pre-commit audit: phases, gates, atomic commits, memory discipline |
+| `/skill:axki-watchdog` | Reviewer | Adversarial audit. Assumes the executor is trying to look productive. Finds the gaps |
+
+### Codex Commands
 
 | Command | Role | What it does |
 |---------|------|--------------|
-| `/axki:init` | Setup | Declares executor and reviewer roles for the session |
-| `/axki:validate` | Reviewer | Scores every item in the plan: PASS / FAIL / PARTIAL. Blocks on anything under threshold |
-| `/axki:checklist` | Reviewer | Pre-commit audit: phases, gates, atomic commits, memory discipline |
-| `/axki:watchdog` | Reviewer | Adversarial audit. Assumes the executor is trying to look productive. Finds the gaps |
-
-### Content (2 commands)
-
-| Command | Role | What it does |
-|---------|------|--------------|
-| `/axki:linkedin-post` | Executor | Generates a LinkedIn post in AXKI brand voice (howto / story / insight / cta) |
-| `/axki:linkedin-carousel` | Executor | Generates a full carousel: slides, image prompts, companion post, hashtags |
+| `/codex:axki-init` | Setup | Declares executor and reviewer roles for the session |
+| `/codex:axki-validate` | Reviewer | Scores every item in the plan: PASS / FAIL / PARTIAL. Blocks on anything under threshold |
+| `/codex:axki-checklist` | Reviewer | Pre-commit audit: phases, gates, atomic commits, memory discipline |
+| `/codex:axki-watchdog` | Reviewer | Adversarial audit. Assumes the executor is trying to look productive. Finds the gaps |
 
 ---
 
@@ -70,8 +74,8 @@ Available as:
 
 ```
 /skill:axki-init
-/skill:axki-validate
 /skill:axki-checklist
+/skill:axki-validate
 /skill:axki-watchdog
 ```
 
@@ -88,8 +92,8 @@ Available as:
 
 ```
 /codex:axki-init
-/codex:axki-validate
 /codex:axki-checklist
+/codex:axki-validate
 /codex:axki-watchdog
 ```
 
@@ -99,36 +103,62 @@ Available as:
 
 **Step 1 — Declare roles at session start**
 
-```
-/axki:init executor=claude reviewer=codex
-```
-
-or flip it:
+Claude Code:
 
 ```
-/axki:init executor=codex reviewer=claude
+/skill:axki-init executor=claude reviewer=codex
 ```
 
-When benchmarks shift and you want to swap models, change the init. Nothing else changes.
+Codex CLI:
+
+```
+/codex:axki-init executor=codex reviewer=claude
+```
+
+When benchmarks shift and you want to swap models, change the executor/reviewer values. Keep Claude Code invocations on `/skill:axki-*` and Codex CLI invocations on `/codex:axki-*`.
 
 **Step 2 — Validate before you write a single line**
 
+Claude Code:
+
 ```
-/axki:validate
+/skill:axki-validate
+```
+
+Codex CLI:
+
+```
+/codex:axki-validate
 ```
 
 The reviewer scores your plan. No GO = no code.
 
 **Step 3 — Check before every commit**
 
+Claude Code:
+
 ```
-/axki:checklist
+/skill:axki-checklist
+```
+
+Codex CLI:
+
+```
+/codex:axki-checklist
 ```
 
 **Step 4 — Run the watchdog at session end**
 
+Claude Code:
+
 ```
-/axki:watchdog
+/skill:axki-watchdog
+```
+
+Codex CLI:
+
+```
+/codex:axki-watchdog
 ```
 
 The reviewer assumes the executor is lying. It will find out.
@@ -144,13 +174,15 @@ EXPLORE  -->  PLAN  -->  IMPLEMENT  -->  COMMIT
 (GO req)    (GO req)       (GO req)     (GO Prod)
 ```
 
-Core rules: phases are sequential, no skipping. Human-in-the-loop approval at every gate. Atomic commits only. Real git worktrees. Stop-hooks until tests are green.
+Core rules: phases are sequential, no skipping. Human-in-the-loop approval at every gate. Atomic commits only. Stop-hooks until tests are green.
+
+Project-specific AGENTS.md / CLAUDE.md instructions override this generic framework. If the project uses lane worktrees, create real git worktrees in the project-approved lanes directory; otherwise follow the project's AGENTS.md/CLAUDE.md workflow. Push the approved target branch/current session branch only when authorized.
 
 ---
 
 ## Free resources included
 
-The `pdf/` folder contains the **AXKI AI Coding Governance Kit** (14 pages): full framework walkthrough, all 3 template cores, real adversarial validation screenshot, and install reference.
+The `pdf/` folder contains the **AXKI AI Coding Governance Kit**: full framework walkthrough, template cores, real adversarial validation screenshot, and install reference.
 
 ---
 

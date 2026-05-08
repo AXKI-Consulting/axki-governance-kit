@@ -1,6 +1,12 @@
-# /skill:axki-validate — Boris Cherny Plan Validator
+---
+name: axki-validate
+description: Validate a proposed implementation plan against the AXKI Boris Cherny governance protocol.
+user-invocable: true
+---
 
-## AXKI Boris Cherny Governance — Plan Validator
+# /skill:axki-validate - Boris Cherny Plan Validator
+
+## AXKI Boris Cherny Governance - Plan Validator
 
 **Owner:** Max Dion | AXKI | max@axki.ca  
 **Version:** 1.0 | April 2026  
@@ -12,16 +18,18 @@
 
 Validate a proposed plan against the full Boris Cherny protocol before the executor begins implementation. The **reviewer** reads the plan and scores each governance criterion.
 
+Project-specific AGENTS.md / CLAUDE.md instructions override this generic framework.
+
 ## Usage
 
-```
+```text
 /skill:axki-validate
 ```
 
 ## Instructions for the Reviewer
 
 Read the plan below and score each item:
- ✓ PASS | ✗ FAIL | △ PARTIAL
+PASS | FAIL | PARTIAL
 
 Flag every FAIL and PARTIAL.
 Final verdict: GO / NEEDS REVISION / BLOCK
@@ -30,51 +38,51 @@ Final verdict: GO / NEEDS REVISION / BLOCK
 
 ## VALIDATION CRITERIA
 
-### ── LOOP & PHASE ──
+### LOOP & PHASE
 - [ ] Current phase clearly identified?
 - [ ] Order respected? No Implement without approved Plan.
 - [ ] Plan Mode active? No file writes before GO.
 - [ ] One clear GO gate before the next phase?
 
-### ── LANES & WORKTREES ──
-- [ ] Real Git worktrees — explicit git worktree add commands?
-- [ ] All worktrees inside buildup/lanes/?
+### LANES & WORKTREES
+- [ ] If the project uses lane worktrees, real Git worktrees are planned with explicit `git worktree add` commands?
+- [ ] If the project uses lane worktrees, create real git worktrees in the project-approved lanes directory; otherwise follow the project's AGENTS.md/CLAUDE.md workflow?
 - [ ] Each lane named and assigned before Implement?
 - [ ] Each lane scoped to one concern?
 - [ ] Worktrees created one at a time?
 - [ ] Removal after each merge planned?
 
-### ── HITL GATES ──
-- [ ] GATE 1 present? (Explore complete → wait for GO)
-- [ ] GATE 2 present? (Plan approved → wait for GO)
-- [ ] GATE 3 defined? (Implement done → GO before Commit)
+### HITL GATES
+- [ ] GATE 1 present? (Explore complete -> wait for GO)
+- [ ] GATE 2 present? (Plan approved -> wait for GO)
+- [ ] GATE 3 defined? (Implement done -> GO before Commit)
 - [ ] GATE 4 respected? (No push to prod without GO Prod)
 
-### ── STOP-HOOKS / DONE CRITERIA ──
+### STOP-HOOKS / DONE CRITERIA
 - [ ] Done-when defined before Implement starts?
 - [ ] Stop-hook command specified per task?
 - [ ] Will agent loop until all green?
-- [ ] Failure protocol: fix → new commit → rerun?
+- [ ] Failure protocol: fix -> new commit -> rerun?
 - [ ] Monotonic test count enforced?
 
-### ── COMMITS ──
+### COMMITS
 - [ ] Atomic? One concern per commit?
 - [ ] No bundled commits planned?
 - [ ] No half-migrations left open?
 
-### ── ADVERSARIAL REVIEW ──
+### ADVERSARIAL REVIEW
 - [ ] Reviewer agent defined in workflow?
 - [ ] Review before each lane merge?
 - [ ] Final verification after session planned?
 
-### ── MEMORY ──
+### MEMORY
 - [ ] Memory file (CLAUDE.md / AGENTS.md) update planned at session end?
-- [ ] ERREURS CONNUES update planned?
-- [ ] Session log to /logs/ planned?
-- [ ] git push origin master in governance?
+- [ ] Known-errors memory update planned if the project uses one?
+- [ ] Session log planned if the project requires one?
+- [ ] Push the approved target branch/current session branch only when authorized?
 - [ ] Merged branches deletion planned?
 
-### ── ANTI-PATTERNS CHECK ──
+### ANTI-PATTERNS CHECK
 - [ ] No monolithic scripts?
 - [ ] No skipped Plan Mode?
 - [ ] No prod push without GO Prod?
@@ -82,7 +90,7 @@ Final verdict: GO / NEEDS REVISION / BLOCK
 - [ ] No over-engineering beyond current scope?
 - [ ] No phantom file references?
 
-### ── SECURITY (if OAuth or external API) ──
+### SECURITY (if OAuth or external API)
 - [ ] State validation planned (Redis TTL)?
 - [ ] Public paths exempted for callbacks?
 - [ ] CSRF exemption for webhooks/callbacks?
@@ -93,7 +101,7 @@ Final verdict: GO / NEEDS REVISION / BLOCK
 
 ## FINAL SCORING
 
-```
+```text
 Fails found: ___
 Partials found: ___
 
