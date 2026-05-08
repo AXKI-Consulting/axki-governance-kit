@@ -73,8 +73,6 @@ Available as:
 /skill:axki-validate
 /skill:axki-checklist
 /skill:axki-watchdog
-/skill:axki-linkedin-post
-/skill:axki-linkedin-carousel
 ```
 
 ### Codex CLI
